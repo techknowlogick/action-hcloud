@@ -1,31 +1,26 @@
 {
-  "name": "action-vultr",
-  "version": "2.0.0",
-  "description": "GitHub Action for Vultr - vultr-cli",
+  "name": "action-hcloud",
+  "version": "3.0.0",
+  "description": "GitHub Action for Hetzner Cloud - hcloud",
+  "type": "module",
   "main": "main.js",
-  "dependencies": {
-    "@actions/core": "^1.2.6",
-    "@actions/exec": "^1.0.4",
-    "@actions/tool-cache": "^1.5.5",
-    "@octokit/rest": "^17.9.2"
-  },
-  "devDependencies": {
-    "@zeit/ncc": "^0.22.3",
-    "eslint": "^6.8.0"
+  "engines": {
+    "node": ">=20"
   },
   "scripts": {
-    "lint": "eslint main.js",
-    "test": "npm install; npm run lint",
-    "package": "ncc build main.js -o dist"
+    "lint": "eslint .",
+    "test": "npm run lint && node --test",
+    "package": "ncc build main.js -o dist --license licenses.txt"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/techknowlogick/action-vultr.git"
+    "url": "git+https://github.com/techknowlogick/action-hcloud.git"
   },
   "keywords": [
     "GitHub",
     "Actions",
-    "DigitalOcean",
+    "Hetzner",
+    "hcloud",
     "CI/CD",
     "deployment",
     "cloud"
@@ -33,7 +28,19 @@
   "author": "techknowlogick <techknowlogick@gitea.io>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/techknowlogick/action-vultr/issues"
+    "url": "https://github.com/techknowlogick/action-hcloud/issues"
   },
-  "homepage": "https://github.com/techknowlogick/action-vultr#readme"
+  "homepage": "https://github.com/techknowlogick/action-hcloud#readme",
+  "dependencies": {
+    "@actions/core": "^3.0.1",
+    "@actions/exec": "^3.0.0",
+    "@actions/http-client": "^4.0.1",
+    "@actions/tool-cache": "^4.0.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@vercel/ncc": "^0.45.0",
+    "eslint": "^10.11.0",
+    "globals": "^17.12.0"
+  }
 }

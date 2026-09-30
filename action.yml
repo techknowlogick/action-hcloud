@@ -3,11 +3,17 @@ description: 'Use hcloud to manage your Hetzner cloud resources.'
 author: 'techknowlogick <techknowlogick@gitea.io>'
 inputs:
   version:
-    description: 'Version of hcloud to install'
+    description: 'Version of hcloud to install, e.g. "1.40.0". Defaults to the latest release.'
     default: 'latest'
   token:
-    description: 'Hetzner API Key'
+    description: 'Hetzner Cloud API token. Exported as HCLOUD_TOKEN for later steps in the job.'
     required: true
+  github-token:
+    description: 'GitHub token used to look up hcloud releases, to avoid unauthenticated API rate limits.'
+    default: ${{ github.server_url == 'https://github.com' && github.token || '' }}
+outputs:
+  version:
+    description: 'The version of hcloud that was installed.'
 runs:
-  using: 'node12'
+  using: 'node24'
   main: 'dist/index.js'
