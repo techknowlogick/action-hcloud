@@ -27,11 +27,13 @@ To install a specific version instead:
 
 `hcloud` will now be available on the `PATH`, and the token is exported as `HCLOUD_TOKEN`, so later steps in the same job can use `hcloud` directly. The token is masked in logs. The action checks the token by running `hcloud datacenter list`, and fails if the token is invalid.
 
+The token is optional. Without it, the action only installs the CLI, and you can pass credentials to later steps yourself.
+
 The action supports Linux, macOS and Windows runners on x64 and arm64. Each download is checked against the release's published SHA-256 checksums.
 
 ### Inputs
 
-- `token` – (**Required**) A Hetzner Cloud API token.
+- `token` – (Optional) A Hetzner Cloud API token. If set, it is checked and exported for later steps. Leave it out to only install the CLI.
 - `version` – (Optional) The version of `hcloud` to install, e.g. `1.40.0`. Defaults to the latest release.
 - `github-token` – (Optional) Token used to look up `hcloud` releases on GitHub. Defaults to the workflow's `GITHUB_TOKEN` on github.com, which avoids the unauthenticated API rate limit.
 

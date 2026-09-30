@@ -6,8 +6,8 @@ inputs:
     description: 'Version of hcloud to install, e.g. "1.40.0". Defaults to the latest release.'
     default: 'latest'
   token:
-    description: 'Hetzner Cloud API token. Exported as HCLOUD_TOKEN for later steps in the job.'
-    required: true
+    description: 'Hetzner Cloud API token. If set, it is checked and exported as HCLOUD_TOKEN for later steps in the job. Leave empty to only install the CLI.'
+    required: false
   github-token:
     description: 'GitHub token used to look up hcloud releases, to avoid unauthenticated API rate limits.'
     default: ${{ github.server_url == 'https://github.com' && github.token || '' }}

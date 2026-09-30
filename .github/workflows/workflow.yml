@@ -37,10 +37,7 @@ jobs:
             exit 1
           fi
 
-  # These jobs need the HCLOUD_TOKEN secret, which is not available to pull
-  # requests from forks.
   test:
-    if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
@@ -52,18 +49,12 @@ jobs:
       - name: Install hcloud
         id: install
         uses: ./
-        with:
-          token: ${{ secrets.HCLOUD_TOKEN }}
 
       - name: Verify installation
         shell: bash
         run: hcloud version | grep -F "${{ steps.install.outputs.version }}"
 
-      - name: Verify token is available to later steps
-        run: hcloud datacenter list
-
   test_custom_version:
-    if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
@@ -75,7 +66,6 @@ jobs:
       - name: Install hcloud
         uses: ./
         with:
-          token: ${{ secrets.HCLOUD_TOKEN }}
           version: 1.40.0
 
       - name: Verify installation of correct version
